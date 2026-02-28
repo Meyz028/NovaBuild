@@ -1,0 +1,31 @@
+type CategoryBlog {
+    id: Int
+    name: String
+    description: String
+    slug: String
+    is_active: Boolean
+}
+
+type Blog {
+    id: Int
+    name: String
+    description: String
+    slug: String
+    is_active: Boolean
+}
+
+input BlogSlug {
+    slug: String
+}
+
+input BlogCategory{
+    data: String
+    pagination: String
+    filters: String
+
+}
+extend type Query {
+    category:(input: BlogSlug @spread): Category field(resolver: "Modules\\Blog\\GraphQL\\Queries\\Category")
+    service:(input: BlogSlug @spread): Service field(resolver: "Modules\\Blog\\GraphQL\\Queries\\Service")
+    hello: String @field(resolver: "Modules\\Blog\\GraphQL\\Queries\\Hello")
+}

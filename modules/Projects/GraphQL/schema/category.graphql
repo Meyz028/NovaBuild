@@ -1,0 +1,20 @@
+type CategoryProject {
+    id: Int
+    description: String
+    slug: String
+    is_active: Boolean
+}
+
+type Projects {
+    id: Int
+    description: String
+    slug: String
+    is_active: Boolean
+}
+input Task{
+    slug: String
+}
+extend type Query {
+    service:(input: Task @spread): Service field(resolver: "Modules\\Task\\GraphQL\\Queries\\Service")
+    hello: String @field(resolver: "Modules\\Projects\\GraphQL\\Queries\\Hello")
+}

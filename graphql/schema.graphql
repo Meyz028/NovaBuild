@@ -1,0 +1,3 @@
+#import types.graphql
+#import ../modules/Projects/GraphQL/schema/category.graphql
+#import ../modules/Blog/GraphQL/schema/category.graphql
