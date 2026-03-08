@@ -1,14 +1,14 @@
 <?php
 
-namespace Modules\Projects\Filament\Resources\TaskResource\Pages;
+namespace Modules\Team\Filament\Resources\TeamResource\Pages;
 
 use Filament\Actions;
 use Filament\Resources\Pages\ListRecords;
-use Modules\Projects\Filament\Resources\TaskResource;
+use Modules\Team\Filament\Resources\TeamResource;
 
-class ListTasks extends ListRecords
+class ListTeams extends ListRecords
 {
-    protected static string $resource = TaskResource::class;
+    protected static string $resource = TeamResource::class;
 
     protected function getHeaderActions(): array
     {

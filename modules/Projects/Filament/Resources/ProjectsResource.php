@@ -3,24 +3,17 @@
 namespace Modules\Projects\Filament\Resources;
 
 use Archilex\ToggleIconColumn\Columns\ToggleIconColumn;
-use Dom\Text;
 use Filament\Forms\Components\Section;
-use Filament\Forms\Components\Select;
 use Filament\Forms\Components\TextInput;
 use Filament\Forms\Components\Toggle;
-use Illuminate\Support\Str;
-use Filament\Tables\Columns\TextColumn;
-use Modules\Projects\Filament\Resources\ProjectsResource\Pages;
-use Modules\Projects\Filament\Resources\ProjectsResource\RelationManagers;
-use Modules\Projects\Models\Projects;
-use Filament\Forms;
 use Filament\Forms\Form;
+use Filament\Resources\Concerns\Translatable;
 use Filament\Resources\Resource;
 use Filament\Tables;
+use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Table;
-use Filament\Resources\Concerns\Translatable;
-use Illuminate\Database\Eloquent\Builder;
-use Illuminate\Database\Eloquent\SoftDeletingScope;
+use Modules\Projects\Filament\Resources\ProjectsResource\Pages;
+use Modules\Projects\Models\Projects;
 
 class ProjectsResource extends Resource
 {
@@ -42,7 +35,6 @@ class ProjectsResource extends Resource
 
     protected static ?string $slug = 'projects';
 
-
     public static function form(Form $form): Form
     {
         return $form
@@ -63,29 +55,30 @@ class ProjectsResource extends Resource
                     ]),
             ]);
     }
+
     public static function table(Table $table): Table
     {
         return $table
             ->columns([
-            TextColumn::make('id')
-                ->label('ID')
-                ->sortable()
-                ->searchable(),
-            TextColumn::make('name')
-                ->label('Назва')
-                ->sortable()
-                ->searchable(),
-            TextColumn::make('description')
-                ->label('Опис')
-                ->searchable(),
-            TextColumn::make('slug')
-                ->label('Слаг')
-                ->sortable()
-                ->searchable(),
-            ToggleIconColumn::make('active')
-                ->label('Статус')
-                ->onIcon('heroicon-s-lock-open')
-                ->offIcon('heroicon-o-lock-closed')
+                TextColumn::make('id')
+                    ->label('ID')
+                    ->sortable()
+                    ->searchable(),
+                TextColumn::make('name')
+                    ->label('Назва')
+                    ->sortable()
+                    ->searchable(),
+                TextColumn::make('description')
+                    ->label('Опис')
+                    ->searchable(),
+                TextColumn::make('slug')
+                    ->label('Слаг')
+                    ->sortable()
+                    ->searchable(),
+                ToggleIconColumn::make('active')
+                    ->label('Статус')
+                    ->onIcon('heroicon-s-lock-open')
+                    ->offIcon('heroicon-o-lock-closed'),
             ])
             ->filters([
                 //

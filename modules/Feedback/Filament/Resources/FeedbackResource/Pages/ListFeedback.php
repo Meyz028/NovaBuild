@@ -1,14 +1,14 @@
 <?php
 
-namespace Modules\Projects\Filament\Resources\TaskResource\Pages;
+namespace Modules\Feedback\Filament\Resources\FeedbackResource\Pages;
 
 use Filament\Actions;
 use Filament\Resources\Pages\ListRecords;
-use Modules\Projects\Filament\Resources\TaskResource;
+use Modules\Feedback\Filament\Resources\FeedbackResource;
 
-class ListTasks extends ListRecords
+class ListFeedback extends ListRecords
 {
-    protected static string $resource = TaskResource::class;
+    protected static string $resource = FeedbackResource::class;
 
     protected function getHeaderActions(): array
     {
