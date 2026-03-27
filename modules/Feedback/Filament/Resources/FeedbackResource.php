@@ -2,22 +2,22 @@
 
 namespace Modules\Feedback\Filament\Resources;
 
-use App\Filament\Resources\FeedbackResource\Pages;
-use Filament\Forms\Components\FloatInput;
 use Filament\Forms\Components\Section;
 use Filament\Forms\Components\TextInput;
 use Filament\Forms\Form;
 use Filament\Resources\Concerns\Translatable;
 use Filament\Resources\Resource;
 use Filament\Tables;
+use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Table;
-use Modules\Feedback\Models\Feedback;
+use Modules\Feedback\Filament\Resources\FeedbackResource\Pages;
+use Modules\Feedback\Models\FeedbackCustomers;
 
 class FeedbackResource extends Resource
 {
     use Translatable;
 
-    protected static ?string $model = Feedback::class;
+    protected static ?string $model = FeedbackCustomers::class;
 
     protected static ?int $navigationSort = 6;
 
@@ -31,7 +31,7 @@ class FeedbackResource extends Resource
 
     protected static ?string $pluralModelLabel = 'Відгуки';
 
-    protected static ?string $slug = 'feedback';
+    protected static ?string $slug = 'feedback_customers';
 
     public static function form(Form $form): Form
     {
@@ -51,7 +51,8 @@ class FeedbackResource extends Resource
                         TextInput::make('message')
                             ->label('Повідомлення')
                             ->required(),
-                        FloatInput::make('rating')
+                        TextInput::make('rating')
+                            ->numeric()
                             ->label('Рейтинг')
                             ->required(),
                     ]),
@@ -82,10 +83,10 @@ class FeedbackResource extends Resource
                     ->label('Повідомлення')
                     ->sortable()
                     ->searchable(),
-                FloatColumn::make('rating')
+                TextColumn::make('rating')
+                    ->numeric()
                     ->label('Рейтинг')
-                    ->sortable()
-                    ->searchable(),
+                    ->sortable(),
             ])
             ->filters([
                 //

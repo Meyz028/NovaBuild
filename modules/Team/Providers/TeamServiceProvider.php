@@ -2,10 +2,10 @@
 
 namespace Modules\Team\Providers;
 
-use Illuminate\Support\ServiceProvider;
 use Filament\Facades\Filament;
+use Illuminate\Support\ServiceProvider;
 
-class Team extends ServiceProvider
+class TeamServiceProvider extends ServiceProvider
 {
     /**
      * Register services.
@@ -16,7 +16,7 @@ class Team extends ServiceProvider
     public function register(): void
     {
         $panel = Filament::getPanels()['admin'];
-        $panel->discoverResources(in: base_path('modules/Blog/Filament/Resources'), for: 'Modules\\Blog\\Filament\\Resources');
+        $panel->discoverResources(in: base_path('modules/Team/Filament/Resources'), for: 'Modules\\Team\\Filament\\Resources');
     }
 
     /**
@@ -24,6 +24,6 @@ class Team extends ServiceProvider
      */
     public function boot(): void
     {
-        $this->loadMigrationsFrom(__DIR__ . '/../database/migrations');
+        $this->loadMigrationsFrom(__DIR__.'/../database/migrations');
     }
 }

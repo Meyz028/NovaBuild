@@ -2,9 +2,7 @@
 
 namespace Modules\Blog\Models;
 
-
 use Illuminate\Database\Eloquent\Model;
-use Modules\Core\Traits\HassTranslations;
 use Modules\Media\Traits\InteractiveMedia;
 use Spatie\Sluggable\HasSlug;
 use Spatie\Sluggable\SlugOptions;
@@ -13,6 +11,7 @@ use Spatie\Translatable\HasTranslations;
 class Category extends Model
 {
     use HasSlug;
+
     // use InteractiveMedia;
     use HasTranslations;
 
@@ -22,7 +21,7 @@ class Category extends Model
         'is_active',
     ];
 
-    protected $table = 'categories';
+    protected $table = 'blog-categories';
 
     public array $translatable = [
         'name',

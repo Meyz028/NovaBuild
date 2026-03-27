@@ -5,7 +5,7 @@ namespace Modules\Feedback\Providers;
 use Filament\Facades\Filament;
 use Illuminate\Support\ServiceProvider;
 
-class Feedback extends ServiceProvider
+class FeedbackServiceProvider extends ServiceProvider
 {
     /**
      * Register services.

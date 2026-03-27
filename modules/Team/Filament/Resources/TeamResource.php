@@ -7,14 +7,14 @@ use Filament\Resources\Concerns\Translatable;
 use Filament\Resources\Resource;
 use Filament\Tables;
 use Filament\Tables\Table;
+use Modules\Auth\Models\User;
 use Modules\Team\Filament\Resources\TeamResource\Pages;
-use Modules\Team\Models\Team;
 
 class TeamResource extends Resource
 {
     use Translatable;
 
-    protected static ?string $model = Team::class;
+    protected static ?string $model = User::class;
 
     protected static ?int $navigationSort = 5;
 
@@ -42,7 +42,9 @@ class TeamResource extends Resource
     {
         return $table
             ->columns([
-                //
+                Tables\Columns\TextColumn::make('id')->label('ID')->sortable(),
+                Tables\Columns\TextColumn::make('name')->label('Ім\'я')->sortable()->searchable(),
+                Tables\Columns\TextColumn::make('email')->label('Email')->sortable()->searchable(),
             ])
             ->filters([
                 //

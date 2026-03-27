@@ -5,18 +5,17 @@ namespace Modules\Projects\Models;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Spatie\MediaLibrary\HasMedia;
-use Spatie\Interfaces\InteractiveMedia;
 use Spatie\MediaLibrary\InteractsWithMedia;
 use Spatie\MediaLibrary\MediaCollections\Models\Media;
-use Spatie\Translatable\HasTranslations;
 use Spatie\Sluggable\HasSlug;
 use Spatie\Sluggable\SlugOptions;
+use Spatie\Translatable\HasTranslations;
 
 class Projects extends Model implements HasMedia
 {
-     use HasSlug;
-     use InteractsWithMedia;
-     use HasTranslations;
+    use HasSlug;
+    use HasTranslations;
+    use InteractsWithMedia;
 
     protected $fillable = [
         'name',
@@ -25,13 +24,11 @@ class Projects extends Model implements HasMedia
         'is_active',
     ];
 
-
     protected $table = 'projects';
-
 
     public array $translatable = [
         'name',
-     ];
+    ];
 
     public function getSlugOptions(): SlugOptions
     {
@@ -42,7 +39,7 @@ class Projects extends Model implements HasMedia
             ->doNotGenerateSlugsOnUpdate();
     }
 
-    public function registerMediaConversions(Media $media = null): void
+    public function registerMediaConversions(?Media $media = null): void
     {
         $this->addMediaConversion('webp')
             ->format('webp')->nonQueued();
@@ -55,11 +52,13 @@ class Projects extends Model implements HasMedia
         })->toArray()[0] ?? null;
     }
 
-
-    public function category():  BelongsTo
+    public function category(): BelongsTo
     {
         return $this->belongsTo(Category::class, 'category_id', 'id');
     }
+
+    public function feedback(): BelongsTo
+    {
+        return $this->belongsTo(ProjectFeedback::class, 'feedback_id', 'id');
+    }
 }
-
-
