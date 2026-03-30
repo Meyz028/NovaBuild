@@ -3,13 +3,12 @@
 namespace Modules\Projects\Models;
 
 use Illuminate\Database\Eloquent\Model;
-use Modules\Core\Traits\HassTranslations;
 use Modules\Media\Traits\InteractiveMedia;
 use Spatie\Translatable\HasTranslations;
 
 class Task extends Model
 {
-    //use InteractiveMedia;
+    // use InteractiveMedia;
     use HasTranslations;
 
     protected $table = 'tasks';
@@ -22,7 +21,12 @@ class Task extends Model
         'deadline',
     ];
 
-     public array $translatable = [
-         'name',
-     ];
+    public array $translatable = [
+        'name',
+    ];
+
+    public function projects(): BelongsToMany
+    {
+        return $this->belongsToMany(Projects::class, 'project_task', 'task_id', 'project_id');
+    }
 }

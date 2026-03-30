@@ -61,4 +61,9 @@ class Projects extends Model implements HasMedia
     {
         return $this->belongsTo(ProjectFeedback::class, 'feedback_id', 'id');
     }
+
+    public function task(): BelongsToMany
+    {
+        return $this->belongsToMany(Task::class, 'project_task', 'project_id', 'task_id');
+    }
 }
